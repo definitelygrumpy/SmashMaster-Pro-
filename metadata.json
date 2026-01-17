@@ -1,0 +1,5 @@
+{
+  "name": "SmashMaster Pro",
+  "description": "A professional-grade badminton club management system featuring automated tournament scheduling, live standings calculation, and player registry with skill tracking.",
+  "requestFramePermissions": []
+}
