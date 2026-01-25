@@ -49,7 +49,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             <Trophy className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="font-bold text-xl tracking-tight">SmashMaster</h1>
+            <h1 className="font-bold text-xl tracking-tight">Badmintour</h1>
             <p className="text-xs text-orange-500 font-bold uppercase tracking-widest">Pro Edition</p>
           </div>
         </div>

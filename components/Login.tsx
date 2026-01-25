@@ -42,7 +42,7 @@ const Login: React.FC<LoginProps> = ({ clubs, onLogin, isDarkMode }) => {
           <div className="bg-orange-500 p-4 rounded-2xl shadow-xl shadow-orange-500/20 mb-4">
             <Trophy className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold tracking-tight mb-1">SmashMaster <span className="text-orange-500">Pro</span></h1>
+          <h1 className="text-3xl font-bold tracking-tight mb-1">Badmintour <span className="text-orange-500">Pro</span></h1>
           <p className="text-slate-500 text-sm">Badminton Club Management Suite</p>
         </div>
 
