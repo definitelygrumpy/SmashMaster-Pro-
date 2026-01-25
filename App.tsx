@@ -12,10 +12,8 @@ import TournamentEngine from './components/TournamentEngine';
 import AdminConsole from './components/AdminConsole';
 import Sidebar from './components/Sidebar';
 import Login from './components/Login';
-
-const INITIAL_CLUBS: Club[] = [
-  { id: '1', name: 'Downtown Smashers', location: 'City Arena', username: 'club1', password: 'password' }
-];
+import { db } from './firebase';
+import { ref, onValue, set } from 'firebase/database';
 
 const App: React.FC = () => {
   const [session, setSession] = useState<AuthSession | null>(() => {
@@ -24,43 +22,39 @@ const App: React.FC = () => {
   });
   const [activeTab, setActiveTab] = useState<'dashboard' | 'players' | 'tournaments' | 'admin'>('dashboard');
   
-  // Local states with initial load from LocalStorage
-  const [players, setPlayers] = useState<Player[]>(() => {
-    const saved = localStorage.getItem('sm_players');
-    return saved ? JSON.parse(saved) : [];
-  });
-  const [clubs, setClubs] = useState<Club[]>(() => {
-    const saved = localStorage.getItem('sm_clubs');
-    return saved ? JSON.parse(saved) : INITIAL_CLUBS;
-  });
-  const [tournaments, setTournaments] = useState<Tournament[]>(() => {
-    const saved = localStorage.getItem('sm_tournaments');
-    return saved ? JSON.parse(saved) : [];
-  });
-  const [matches, setMatches] = useState<Match[]>(() => {
-    const saved = localStorage.getItem('sm_matches');
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [players, setPlayers] = useState<Player[]>([]);
+  const [clubs, setClubs] = useState<Club[]>([]);
+  const [tournaments, setTournaments] = useState<Tournament[]>([]);
+  const [matches, setMatches] = useState<Match[]>([]);
   
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  // Persistence logic for all entities
   useEffect(() => {
-    localStorage.setItem('sm_players', JSON.stringify(players));
-  }, [players]);
+    const playersRef = ref(db, 'players');
+    onValue(playersRef, (snapshot) => {
+      const data = snapshot.val();
+      setPlayers(data ? Object.values(data) : []);
+    });
 
-  useEffect(() => {
-    localStorage.setItem('sm_clubs', JSON.stringify(clubs));
-  }, [clubs]);
+    const clubsRef = ref(db, 'clubs');
+    onValue(clubsRef, (snapshot) => {
+      const data = snapshot.val();
+      setClubs(data ? Object.values(data) : []);
+    });
 
-  useEffect(() => {
-    localStorage.setItem('sm_tournaments', JSON.stringify(tournaments));
-  }, [tournaments]);
+    const tournamentsRef = ref(db, 'tournaments');
+    onValue(tournamentsRef, (snapshot) => {
+      const data = snapshot.val();
+      setTournaments(data ? Object.values(data) : []);
+    });
 
-  useEffect(() => {
-    localStorage.setItem('sm_matches', JSON.stringify(matches));
-  }, [matches]);
+    const matchesRef = ref(db, 'matches');
+    onValue(matchesRef, (snapshot) => {
+      const data = snapshot.val();
+      setMatches(data ? Object.values(data) : []);
+    });
+  }, []);
 
   useEffect(() => {
     if (session) localStorage.setItem('sm_session', JSON.stringify(session));
@@ -74,7 +68,6 @@ const App: React.FC = () => {
     return <Login clubs={clubs} onLogin={setSession} isDarkMode={isDarkMode} />;
   }
 
-  // Filter data based on session for UI display
   const filteredPlayers = session.role === 'SUPER_ADMIN' 
     ? players 
     : players.filter(p => p.clubId === session.clubId);
@@ -152,7 +145,7 @@ const App: React.FC = () => {
             {activeTab === 'players' && (
               <PlayerRegistry 
                 players={players} 
-                setPlayers={setPlayers} 
+                setPlayers={(newPlayers) => set(ref(db, 'players'), newPlayers)}
                 clubs={clubs}
                 session={session}
               />
@@ -161,19 +154,19 @@ const App: React.FC = () => {
               <TournamentEngine 
                 players={filteredPlayers} 
                 tournaments={filteredTournaments} 
-                setTournaments={setTournaments}
+                setTournaments={(newTournaments) => set(ref(db, 'tournaments'), newTournaments)}
                 matches={matches}
-                setMatches={setMatches}
+                setMatches={(newMatches) => set(ref(db, 'matches'), newMatches)}
                 session={session}
               />
             )}
             {activeTab === 'admin' && (
               <AdminConsole 
                 clubs={clubs} 
-                setClubs={setClubs} 
+                setClubs={(newClubs) => set(ref(db, 'clubs'), newClubs)}
                 players={players}
                 tournaments={tournaments}
-                setTournaments={setTournaments}
+                setTournaments={(newTournaments) => set(ref(db, 'tournaments'), newTournaments)}
                 session={session}
               />
             )}
