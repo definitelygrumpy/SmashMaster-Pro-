@@ -1,26 +1,22 @@
 {
-  "name": "badmintour-pro",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "react-firebase-blog",
+  "version": "1.0.0",
+  "description": "A simple blog application built with React and Firebase.",
+  "main": "src/index.tsx",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "firebase": "^9.17.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.4"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "lucide-react": "0.460.0",
-    "recharts": "2.13.0",
-    "firebase": "^12.8.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "typescript": "~5.8.2",
-    "vite": "^5.2.0"
   }
 }
