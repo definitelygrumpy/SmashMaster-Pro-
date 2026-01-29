@@ -9,6 +9,28 @@ const UI = {
         });
     },
 
+    showAlert(message) {
+        const alert = document.createElement('div');
+        alert.className = 'custom-alert';
+        alert.textContent = message;
+        document.body.appendChild(alert);
+
+        // Animate in
+        setTimeout(() => {
+            alert.style.opacity = '1';
+            alert.style.top = '40px';
+        }, 100);
+
+        // Animate out and remove
+        setTimeout(() => {
+            alert.style.opacity = '0';
+            alert.style.top = '20px';
+            setTimeout(() => {
+                document.body.removeChild(alert);
+            }, 500);
+        }, 3000);
+    },
+
     showLogin() {
         this.appRoot.innerHTML = `
             <div class="login-container">
@@ -73,8 +95,9 @@ const UI = {
                 password: password
             });
             this.loadClubs();
+            this.showAlert('Club created successfully!');
         } else {
-            alert('Please fill in all fields');
+            this.showAlert('Please fill in all fields.');
         }
     },
 
@@ -98,6 +121,7 @@ const UI = {
     deleteClub(clubId) {
         database.ref('clubs/' + clubId).remove();
         this.loadClubs();
+        this.showAlert('Club deleted.');
     },
 
     showClubDashboard() {

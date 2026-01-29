@@ -3,27 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Badmintour Pro</title>
+    <title>Badmintour - Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Badmintour Pro</h1>
-            <div class="theme-switcher">
-                <button id="theme-toggle">Toggle Theme</button>
-            </div>
-        </header>
-
-        <main id="app-root"></main>
+<body class="dark-mode">
+    <div class="login-container">
+        <img src="https://cdn.discordapp.com/attachments/848097791954780192/1466376958274310164/ChatGPT_Image_Jan_29_2026_02_18_10_PM.png?ex=697c8576&is=697b33f6&hm=2b143f1afda647e0cc2d9d4018b2dba5e15cb857ce50a92d4e3355769d91e398" alt="Badmintour Logo" style="width: 150px; height: auto; margin-bottom: 1rem;">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button id="loginBtn">Login</button>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
-    <script src="src/firebase.js"></script>
-    <script src="src/auth.js"></script>
-    <script src="src/ui.js"></script>
-    <script src="src/app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="firebase.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

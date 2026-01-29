@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badmintour</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div id="app">
+            <div class="header">
+                <img src="https://cdn.discordapp.com/attachments/848097791954780192/1466377900763775108/746cebe4-a8d3-498d-83ae-ad8cd11dff69.png?ex=697c8657&is=697b34d7&hm=9d4536027d4e3c229ebc711498593083df06ecc835a92dbb859be4909c980e9c&" alt="Badmintour Logo" style="width: 150px; height: auto; margin-right: 1rem;">
+                <div>
+                    <button id="themeToggle"><i class="fas fa-moon"></i></button>
+                    <button id="logoutBtn" style="display: none;"><i class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </div>
+
+            <!-- Login View -->
+            <div id="login-view">
+                <div class="login-container">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button id="loginBtn" class="btn-primary">Login</button>
+                </div>
+            </div>
+
+            <!-- Super Admin View -->
+            <div id="super-admin-view" style="display: none;">
+                <h2>Super Admin Dashboard</h2>
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="clubs">Clubs</button>
+                    <button class="tab-button" data-tab="tournaments">Tournaments</button>
+                </div>
+                <div id="clubs-tab" class="tab-content active">
+                    <h3>Clubs Management</h3>
+                    <button id="add-club-btn" class="btn-primary"><i class="fas fa-plus"></i> Add Club</button>
+                    <div id="club-list"></div>
+                </div>
+                <div id="tournaments-tab" class="tab-content">
+                    <h3>All Tournaments</h3>
+                    <div id="all-tournaments-list"></div>
+                </div>
+            </div>
+
+            <!-- Club User View -->
+            <div id="club-user-view" style="display: none;">
+                <h2 id="club-dashboard-title"></h2>
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="players">Players</button>
+                    <button class="tab-button" data-tab="club-tournaments">Tournaments</button>
+                </div>
+                <div id="players-tab" class="tab-content active">
+                    <h3>Player Management</h3>
+                    <button id="add-player-btn" class="btn-primary"><i class="fas fa-plus"></i> Add Player</button>
+                    <div id="player-list"></div>
+                </div>
+                <div id="club-tournaments-tab" class="tab-content">
+                    <h3>Club Tournaments</h3>
+                    <button id="create-tournament-btn" class="btn-primary"><i class="fas fa-trophy"></i> Create Tournament</button>
+                    <div id="club-tournaments-list"></div>
+                </div>
+            </div>
+
+            <!-- Tournament View -->
+            <div id="tournament-view" style="display: none;">
+                <h2 id="tournament-title"></h2>
+                 <div id="winner-display" class="winner-announcement" style="display: none;">
+                    <div class="winner-podium">
+                        <div class="podium-place winner">
+                            <i class="fas fa-trophy"></i>
+                            <h4>Winner</h4>
+                            <p id="winner-name"></p>
+                        </div>
+                        <div class="podium-place runner-up">
+                            <i class="fas fa-medal"></i>
+                            <h4>Runner-Up</h4>
+                            <p id="runner-up-name"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="matches">Matches</button>
+                    <button class="tab-button" data-tab="standings">Standings</button>
+                </div>
+                <div id="matches-tab" class="tab-content active">
+                    <h3>Matches</h3>
+                    <div id="matches-content"></div>
+                </div>
+                <div id="standings-tab" class="tab-content">
+                    <h3>Standings</h3>
+                    <div id="standings-content"></div>
+                </div>
+                 <button id="back-to-dashboard-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="add-club-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Add Club</h3>
+            <form id="add-club-form">
+                <input type="text" name="name" placeholder="Club Name" required>
+                <input type="text" name="location" placeholder="Location" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Add Club</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="edit-club-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Edit Club</h3>
+            <form id="edit-club-form">
+                <input type="hidden" id="edit-club-id">
+                <input type="text" id="edit-club-name" placeholder="Club Name" required>
+                <input type="text" id="edit-club-location" placeholder="Location" required>
+                <input type="text" id="edit-club-username" placeholder="Username" required>
+                <input type="password" id="edit-club-password" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-player-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Add Player</h3>
+            <form id="add-player-form">
+                <input type="text" id="player-name" name="player-name" placeholder="Player Name" required>
+                <button type="submit" class="btn-primary">Add Player</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="create-tournament-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Create Tournament</h3>
+            <form id="create-tournament-form">
+                <input type="text" name="tournament-name" placeholder="Tournament Name" required>
+                <br>
+                <label>Select Players:</label>
+                <!--<input type="text" id="player-search-input" placeholder="Search for players to filter...">-->
+                <div id="player-tiles-container" class="player-tiles-container">
+                    <!-- Player tiles will be dynamically inserted here -->
+                </div>
+
+                <button type="submit" class="btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="firebase.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
