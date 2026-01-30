@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #FFA500;
-    --secondary-color: #FF8C00;
-    --accent-color: #FF4500;
+    --primary-color: #f5a623;
+    --secondary-color: #007C9B;
+    --accent-color: #f5a623;
     --background-color-light: #F0F2F5;
     --text-color-light: #000000;
-    --background-color-dark: #1a1a1a;
-    --text-color-dark: #FFFFFF;
+    --background-color-dark: #0D1117;
+     --input-background: #0D1117;
+    --border-color: #30363D;
+   --text-color-dark: #FFFFFF;
     --border-radius: 8px;
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -48,6 +50,21 @@ h2 {
 h3 {
     font-size: 1.5rem;
 }
+.login-container {
+    max-width: 400x;
+    padding: 2rem;
+    text-align: center;
+}
+
+.logo-container {
+    margin-bottom: 0rem;
+}
+
+.logo {
+    height: 266px;
+    width: auto;
+}
+
 
 input, button, select {
     font-family: 'Poppins', sans-serif;
@@ -60,6 +77,8 @@ input, button, select {
     transition: all 0.3s ease;
     background-color: #222;
     color: var(--text-color-dark);
+    width: 240px;
+    height: 52.59px;
 }
 
 body.light-mode input, body.light-mode select {
@@ -71,7 +90,7 @@ body.light-mode input, body.light-mode select {
 input:focus, select:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.3);
+    box-shadow: 0 0 0 2px rgba(0, 168, 204, 0.3);
 }
 
 button {
@@ -86,7 +105,7 @@ button:hover {
     background-color: var(--secondary-color);
 }
 .login-container {
-    max-width: 400px;
+    max-width: 450px;
     margin: 15vh auto;
     padding: 2rem;
     background-color: #1e1e1e;
@@ -224,7 +243,8 @@ body.light-mode .icon-btn:hover {
 }
 
 #player-list .card {
-    padding: 0.5rem 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
 }
 /* Player Tile Selection */
 .player-tiles-container {
@@ -327,9 +347,6 @@ body.light-mode .modal-header {
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
 }
 
 .close:hover,
@@ -559,73 +576,35 @@ body.light-mode .standings-table td small {
     margin: 2rem 0;
     border-radius: var(--border-radius);
     text-align: center;
-    border: 1px solid #FFD700;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    border: 1px solid var(--accent-color);
 }
 
 body.light-mode #winner-display {
     background-color: #fff;
-    border-color: #a3d9e6;
+    border-color: #e6e2a3;
 }
 
 .winner-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.winner-section:last-child {
+    margin-bottom: 0;
 }
 
 .winner-section i {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    color: var(--primary-color);
 }
 
 .winner-section h3 {
     margin: 0 0 0.5rem 0;
-    font-size: 1rem;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 1.5rem;
+    color: var(--primary-color);
 }
 
-#winner-section {
-    border-bottom: 1px solid #444;
-    padding-bottom: 1.5rem;
-    width: 100%;
-}
-
-body.light-mode #winner-section {
-    border-bottom-color: #ddd;
-}
-
-
-#winner-section i {
-    color: #FFD700; /* Gold */
-    font-size: 3rem;
-}
-
-#winner-section h3 {
-    color: #FFD700;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-#winner-name {
-    font-size: 1.6rem;
-    font-weight: 700;
-}
-
-#runner-up-section i {
-    color: #C0C0C0; /* Silver */
-}
-
-#runner-up-section h3 {
-    color: #C0C0C0;
-}
-
-#runner-up-name {
+#winner-name, #runner-up-.logo-container-name {
     font-size: 1.2rem;
     font-weight: 600;
 }

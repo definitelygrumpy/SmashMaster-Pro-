@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Badmintour - Login</title>
+    <title>Badmintour Pro</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body class="dark-mode">
     <div class="login-container">
-        <img src="https://cdn.discordapp.com/attachments/848097791954780192/1466376958274310164/ChatGPT_Image_Jan_29_2026_02_18_10_PM.png?ex=697c8576&is=697b33f6&hm=2b143f1afda647e0cc2d9d4018b2dba5e15cb857ce50a92d4e3355769d91e398" alt="Badmintour Logo" style="width: 150px; height: auto; margin-bottom: 1rem;">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button id="loginBtn">Login</button>
+        <div class="logo-container">
+            <img src="assets/logo.png" alt="Badmintour Pro Logo" class="logo">
+        </div>
+        <h1>Badmintour <span class="pro">Pro</span></h1>
+        <p class="subtitle">Enter the court of champions.</p>
+        <div class="form-container">
+            <div class="input-container">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" placeholder="Enter your club username" required>
+            </div>
+            <div class="input-container">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <button id="loginBtn">Sign In to Dashboard &gt;</button>
+        </div>
+        <p class="footer-text">Don't have an account? Contact your administrator.</p>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
